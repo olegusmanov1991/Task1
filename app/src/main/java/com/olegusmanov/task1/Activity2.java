@@ -6,17 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-public class Activity2 extends AppCompatActivity
+public class Activity2 extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener
 {
 
-	private enum Scale
-	{
-		CENTER, CENTER_CORP, CENTER_INSIDE, FIT_CENTER, FIT_END, FIT_START, FIT_XY, MATRIX
-	}
-	private Scale[] mScales = Scale.values();
 
 	@Override
 
@@ -25,7 +21,7 @@ public class Activity2 extends AppCompatActivity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_2);
 
-		final ImageView imageView = (ImageView) findViewById(R.id.activity_2_image_view_lexus);
+
 		RadioGroup radioGroup = (RadioGroup) findViewById(R.id.activity_2_radioGroup);
 
 
@@ -51,50 +47,24 @@ public class Activity2 extends AppCompatActivity
 			}
 		});
 
-		for (int i = 0; i < mScales.length; i++)
+		for (ScaleType scaleType : ScaleType.values())
 		{
 			RadioButton rb = new RadioButton(this);
-			rb.setText(mScales[i].toString());
-			rb.setId(i);
+			rb.setText(scaleType.toString());
+			rb.setTag(scaleType);
 			radioGroup.addView(rb);
 		}
 
-
-		radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
-		{
-			@Override
-			public void onCheckedChanged(RadioGroup group, int checkedId)
-			{
-				switch (checkedId)
-				{
-					case 0:
-						imageView.setScaleType(ImageView.ScaleType.CENTER);
-						break;
-					case 1:
-						imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-						break;
-					case 2:
-						imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-						break;
-					case 3:
-						imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-						break;
-					case 4:
-						imageView.setScaleType(ImageView.ScaleType.FIT_END);
-						break;
-					case 5:
-						imageView.setScaleType(ImageView.ScaleType.FIT_START);
-						break;
-					case 6:
-						imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-						break;
-					case 7:
-						imageView.setScaleType(ImageView.ScaleType.MATRIX);
-						break;
-				}
-			}
-		});
+		radioGroup.setOnCheckedChangeListener(this);
 
 
+	}
+
+	@Override
+	public void onCheckedChanged(RadioGroup group, int checkedId)
+	{
+		RadioButton buttonchecked = (RadioButton) group.findViewById(checkedId);
+		ImageView imageView = (ImageView) findViewById(R.id.activity_2_image_view_lexus);
+		imageView.setScaleType((ScaleType) buttonchecked.getTag());
 	}
 }
