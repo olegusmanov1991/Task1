@@ -58,7 +58,6 @@ public class Activity3 extends AppCompatActivity implements AdapterView.OnItemSe
 	{
 		ImageView imageView = (ImageView) findViewById(R.id.activity_3_image_view_lexus);
 		imageView.setScaleType(mScaleAdapter.getItem(position));
-
 	}
 
 	@Override
