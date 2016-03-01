@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
-public class Activity3 extends AppCompatActivity implements AdapterView.OnItemSelectedListener
+public class Activity3 extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener
 {
 
 
@@ -22,35 +22,17 @@ public class Activity3 extends AppCompatActivity implements AdapterView.OnItemSe
 		setContentView(R.layout.activity_3);
 
 		Button button = (Button) findViewById(R.id.activity_3_button_main);
-		button.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(View v)
-			{
-				Intent intent = new Intent(Activity3.this, MainActivity.class);
-				startActivity(intent);
-			}
-		});
+		button.setOnClickListener(this);
 
 		Button button1 = (Button) findViewById(R.id.activity_3_button_radioButton);
-		button1.setOnClickListener(new View.OnClickListener()
-		{
-			@Override
-			public void onClick(View v)
-			{
-				Intent intent = new Intent(Activity3.this, Activity2.class);
-				startActivity(intent);
-			}
-		});
-
+		button1.setOnClickListener(this);
 
 		mScaleAdapter = new ScaleAdapter(getLayoutInflater());
 
 		Spinner spinner = (Spinner) findViewById(R.id.activity_3_spinner);
 		spinner.setAdapter(mScaleAdapter);
-
+		spinner.setSelection(3);
 		spinner.setOnItemSelectedListener(this);
-
 	}
 
 	@Override
@@ -64,5 +46,21 @@ public class Activity3 extends AppCompatActivity implements AdapterView.OnItemSe
 	public void onNothingSelected(AdapterView<?> parent)
 	{
 
+	}
+
+	@Override
+	public void onClick(View v)
+	{
+		switch (v.getId())
+		{
+			case R.id.activity_3_button_main:
+				Intent intent = new Intent(Activity3.this, MainActivity.class);
+				startActivity(intent);
+				break;
+			case R.id.activity_3_button_radioButton:
+				Intent intent1 = new Intent(Activity3.this, Activity2.class);
+				startActivity(intent1);
+				break;
+		}
 	}
 }
