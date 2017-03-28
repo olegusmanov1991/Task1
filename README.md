@@ -1,18 +1,12 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+- This addon contains version for Internet explorer (with jquery 1.11.3), Opera and all other browsers (with jquery 2.0.0);
+- "custom" folder contains shared code for all versions;
+- "Builderfiles" folder contains subfolders: "IE", "Opera" and "OtherBrowsers" with specific "config.xml" file for each version;
+ You should edit these files separately in the folders where they are placed (do not put them into "custom" folder) for each version.
 
-### What is this repository for? ###
+## How to build ##
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
-
-### How to build ###
-
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+1. to build the project, AddonsFramework should be installed. Download it at ;
+2. to build for all browsers, run "pack SiteTalkAll.bat";
+3. find created files in the "release_all" folder.
